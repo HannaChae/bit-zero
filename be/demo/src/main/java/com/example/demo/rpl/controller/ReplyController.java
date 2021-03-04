@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/Replys")
+@RequestMapping("/reply")
 public class ReplyController extends AbstractController<Reply> {
 	final ReplyServiceImpl service;
 	
