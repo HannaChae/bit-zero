@@ -17,9 +17,9 @@ interface IUserRepository{
 public interface UserRepository extends JpaRepository<User, Integer>,
 									IUserRepository{
 	
-	@Query(value="update User set usr_pwd = :usrPwd,"
+	@Query("update User set usr_pwd = :usrPwd,"
 			+ " usr_phone = :usrPhone"
-			+ " where usr_no = :usrNo", nativeQuery = true)
+			+ " where usr_no = :usrNo")
 	public int update(@Param("usrPwd") String usrPwd, 
 						@Param("usrPhone") String usrPhone, 
 						@Param("usrNo") int usrNo);
