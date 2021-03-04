@@ -15,10 +15,10 @@ interface IUserRepository{
 public interface UserRepository extends JpaRepository<User, Integer>,
 									IUserRepository{
 	
-	@Query("update User set usr_pwd = :#{user.usrPwd},"
-			+ " usr_phone = :#{user.usrPhone}"
-			+ " where usr_no = :#{user.usrNo}")
-	public int update(@Param("user") User t);
+	@Query("update User set usr_pwd = :usrPwd,"
+			+ " usr_phone = :usrPhone"
+			+ " where usr_no = :usrNo")
+	public int update(@Param("usrPwd") String usrPwd, @Param("usrPhone") String usrPhone, @Param("usrNo") int usrNo);
 	public List<User> findByUsrEmailAndUsrName(String usrName, String usrEmail);
 
 }

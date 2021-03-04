@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/boards")
+@RequestMapping("/board")
 public class BoardController extends AbstractController<Board> {
 	final BoardServiceImpl service;
 	

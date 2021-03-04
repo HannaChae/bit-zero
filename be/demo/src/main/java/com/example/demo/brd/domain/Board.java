@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.example.demo.ord.domain.Order;
+import com.example.demo.pay.domain.Payment;
 import com.example.demo.prd.domain.Product;
 import com.example.demo.rpl.domain.Reply;
 import com.example.demo.usr.domain.User;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity @Table(name="boards") @Getter
+@Entity @Getter
 @NamedQuery(
 name = "Board.findByBrdTitle",
 query = "select b from Board b where b.brdTitle like :brdTitle")
@@ -46,8 +46,8 @@ public class Board {
 	@JoinColumn(name="usr_no")
 	private User user;
 	@ManyToOne
-	@JoinColumn(name="ord_no")
-	private Order order;
+	@JoinColumn(name="pay_no")
+	private Payment payment;
 	@ManyToOne
 	@JoinColumn(name="prd_no")
 	private Product product;

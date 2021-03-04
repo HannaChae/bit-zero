@@ -9,10 +9,10 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 @Repository
 public class ReplyRepositoryImpl extends QuerydslRepositorySupport 
 									implements IReplyRepository{
-	private final JPAQueryFactory qf;
-	public ReplyRepositoryImpl(JPAQueryFactory qf) {
+	// private final JPAQueryFactory qf;
+	public ReplyRepositoryImpl() {
 		super(Reply.class);
-		this.qf = qf;
+		// this.qf = qf;
 	}
 
 }

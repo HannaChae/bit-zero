@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import lombok.Getter;
 
 @Entity
-@Table(name = "levels") @Getter
+ @Getter
 public class Level {
 
 	@Id

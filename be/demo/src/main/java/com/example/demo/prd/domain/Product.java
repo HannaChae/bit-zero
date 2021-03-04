@@ -14,13 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.ctg.domain.Category;
-import com.example.demo.ord.domain.Order;
+import com.example.demo.pay.domain.Payment;
 
 import lombok.Getter;
 
 
 
-@Entity @Table(name="products") @Getter
+@Entity @Getter
 public class Product {
    @Id @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name="prd_no") private int prdNo;
@@ -34,5 +34,5 @@ public class Product {
    private Category category;
    
    @OneToMany(mappedBy = "product")
-   private List<Order> orderList = new ArrayList<>();
+   private List<Payment> orderList = new ArrayList<>();
 }

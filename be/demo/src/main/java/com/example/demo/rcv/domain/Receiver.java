@@ -10,11 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.example.demo.ord.domain.Order;
+import com.example.demo.pay.domain.Payment;
 
 import lombok.Getter;
 
-@Entity @Table(name="Receivers") @Getter
+@Entity  @Getter
 public class Receiver {
       @Id 
       @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,6 @@ public class Receiver {
       @Column(name="rcv_addr") private String rcvAddr;
       
       @ManyToOne
-      @JoinColumn(name="ord_no")
-      private Order order;
+      @JoinColumn(name="pay_no")
+      private Payment payment;
 }

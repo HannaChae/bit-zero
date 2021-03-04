@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/Categorys")
+@RequestMapping("/categorys")
 public class CategoryController extends AbstractController<Category> {
 	final CategoryServiceImpl service;
 	

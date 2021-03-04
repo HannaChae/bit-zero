@@ -14,12 +14,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.lvl.domain.Level;
-import com.example.demo.ord.domain.Order;
+import com.example.demo.pay.domain.Payment;
 
 import lombok.Getter;
 
 @Entity @Getter
-@Table(name = "users")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,6 +53,6 @@ public class User {
 	private Level level;
 	
 	@OneToMany(mappedBy="user")
-	private List<Order> userList = new ArrayList<>();
+	private List<Payment> userList = new ArrayList<>();
 }
 	

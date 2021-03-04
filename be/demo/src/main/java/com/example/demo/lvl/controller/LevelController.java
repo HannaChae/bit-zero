@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/Levels")
+@RequestMapping("/level")
 public class LevelController extends AbstractController<Level> {
 	final LevelServiceImpl service;
 	

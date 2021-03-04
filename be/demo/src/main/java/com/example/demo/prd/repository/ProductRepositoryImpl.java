@@ -11,9 +11,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 @Repository
 public class ProductRepositoryImpl extends QuerydslRepositorySupport 
 									implements IProductRepository{
-	private final JPAQueryFactory qf;
-	public ProductRepositoryImpl(JPAQueryFactory qf) {
+	// private final JPAQueryFactory qf;
+	public ProductRepositoryImpl() {
 		super(Product.class);
-		this.qf = qf;
+		// this.qf = qf;
 	}
 }

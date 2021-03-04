@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/Receivers")
+@RequestMapping("/receiver")
 public class ReceiverController extends AbstractController<Receiver> {
 	final ReceiverServiceImpl service;
 	

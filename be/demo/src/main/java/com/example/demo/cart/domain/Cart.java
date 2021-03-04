@@ -9,11 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.example.demo.ord.domain.Order;
+import com.example.demo.pay.domain.Payment;
 
 import lombok.Getter;
 
-@Entity @Table(name="carts") @Getter
+@Entity @Getter
 public class Cart {
    @Id 
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,6 +21,6 @@ public class Cart {
    @Column(name="cart_amount") private int cartAmount;
    
    @OneToOne
-   @JoinColumn(name = "ord_no")
-   private Order order;
+   @JoinColumn(name = "pay_no")
+   private Payment payment;
 }

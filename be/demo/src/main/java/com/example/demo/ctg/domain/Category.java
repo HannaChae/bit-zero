@@ -15,7 +15,7 @@ import com.example.demo.prd.domain.Product;
 
 import lombok.Getter;
 
-@Entity @Table(name="categories") @Getter
+@Entity @Getter
 public class Category {
    @Id @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name="ctg_no") private int ctgNo;

@@ -10,9 +10,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 @Repository
 public class ReceiverRepositoryImpl extends QuerydslRepositorySupport 
 									implements IReceiverRepository{
-	private final JPAQueryFactory qf;
-	public ReceiverRepositoryImpl(JPAQueryFactory qf) {
+	// private final JPAQueryFactory qf;
+	public ReceiverRepositoryImpl() {
 		super(Receiver.class);
-		this.qf = qf;
+		// this.qf = qf;
 	}
 }

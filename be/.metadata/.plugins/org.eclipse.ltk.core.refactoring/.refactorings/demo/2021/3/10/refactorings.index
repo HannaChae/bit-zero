@@ -11,3 +11,14 @@
 1614750336963	Rename type 'CartRepositroy'
 1614818149765	Delete element
 1614818151964	Delete element
+1614824525824	Rename package 'com.example.demo.ord.controller'
+1614824535501	Rename package 'com.example.demo.ord.domain'
+1614824544922	Rename package 'com.example.demo.ord.repository'
+1614824553944	Rename package 'com.example.demo.ord.service'
+1614824571247	Rename type 'OrderController'
+1614824585156	Rename type 'Order'
+1614824594912	Rename type 'OrderDto'
+1614824602029	Rename type 'OrderRepository'
+1614824609979	Rename type 'OrderRepositoryImpl'
+1614824618105	Rename type 'OrderService'
+1614824627156	Rename type 'OrderServiceImpl'

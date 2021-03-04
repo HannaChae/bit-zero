@@ -12,7 +12,7 @@ import com.example.demo.usr.domain.User;
 
 import lombok.Getter;
 
-@Entity @Table(name="replies") @Getter
+@Entity @Getter
 public class Reply {
 	@Id @Column(name="rpl_no") private int rplNo;
 	@Column(name="rpl_content") private String rplContent;
