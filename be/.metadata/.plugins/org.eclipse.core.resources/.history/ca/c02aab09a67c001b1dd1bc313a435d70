@@ -65,8 +65,8 @@ public class BoardController extends AbstractController<Board> {
 	public ResponseEntity<List<Board>> findByTitle(@PathVariable String title) {
 		return ResponseEntity.ok(service.findByTitle(title));
 	}
-	@GetMapping("/brdWrtDate/{brdWrtDate}")
-	public ResponseEntity<List<Board>> findByBrdWrtDate(@PathVariable String brdWrtDate) {
+	@GetMapping("/writtenDate/{writtenDate}")
+	public ResponseEntity<List<Board>> findByWrittenDate(@PathVariable String brdWrtDate) {
 		return ResponseEntity.ok(service.findByBrdWrtDate(brdWrtDate));
 	}
 }

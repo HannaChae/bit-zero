@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.config.EnableJpaRepositories"/>
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
     <fullyQualifiedTypeName name="com.example.demo.prd.repository.ProductRepository"/>
     <fullyQualifiedTypeName name="com.example.demo.prd.service.ProductService"/>
     <fullyQualifiedTypeName name="com.example.demo.brd.repository.BoardRepository"/>
     <fullyQualifiedTypeName name="com.example.demo.brd.service.BoardService"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Lazy"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
@@ -32,15 +30,12 @@
     <fullyQualifiedTypeName name="com.example.demo.usr.repository.IUserRepository"/>
     <fullyQualifiedTypeName name="com.querydsl.jpa.impl.JPAQueryFactory"/>
     <fullyQualifiedTypeName name="com.example.demo.usr.repository.UserRepository"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
-    <fullyQualifiedTypeName name="com.example.demo.cmm.service.AbstractService"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
     <fullyQualifiedTypeName name="com.example.demo.cmm.controller.AbstractController"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
     <fullyQualifiedTypeName name="com.example.demo.brd.service.BoardServiceImpl"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
     <fullyQualifiedTypeName name="com.example.demo.prd.domain.Product"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="com.example.demo.prd.service.ProductServiceImpl"/>
@@ -50,13 +45,18 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="javax.persistence.NamedQuery"/>
     <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
     <fullyQualifiedTypeName name="com.example.demo.brd.domain.BoardDto"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.example.demo.usr.domain.UserDto"/>
     <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.example.demo.cmm.service.AbstractService"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.config.EnableJpaRepositories"/>
 </qualifiedTypeNameHistroy>
