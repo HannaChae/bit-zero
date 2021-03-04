@@ -46,7 +46,7 @@ public class User {
 	@Column(name = "usr_phone")
 	private String usrPhone;
 
-	@Column(name = "usr_addr")
+	@Column(name = "user_addr")
 	private String usrAddr;
 	
 	@ManyToOne @JoinColumn(name="level")
