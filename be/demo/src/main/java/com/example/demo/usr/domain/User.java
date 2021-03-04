@@ -16,7 +16,9 @@ import javax.persistence.Table;
 import com.example.demo.lvl.domain.Level;
 import com.example.demo.ord.domain.Order;
 
-@Entity
+import lombok.Getter;
+
+@Entity @Getter
 @Table(name = "users")
 public class User {
 	@Id

@@ -1,64 +1,64 @@
 package com.example.demo.prd.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.cmm.controller.HomeController;
+import com.example.demo.cmm.controller.AbstractController;
 import com.example.demo.prd.domain.Product;
-import com.example.demo.prd.repository.ProductRepository;
-import com.example.demo.prd.service.ProductService;
+import com.example.demo.prd.service.ProductServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
-@RestController @RequiredArgsConstructor
-@RequestMapping("/products")
-public class ProductController {
-	final ProductRepository productRepository;
-	final ProductService productService;
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+@RestController
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/Products")
+public class ProductController extends AbstractController<Product> {
+	final ProductServiceImpl service;
+	
+	@PostMapping("/save")
+	public ResponseEntity<Integer> save(@RequestBody Product t) {
+		return ResponseEntity.ok(service.save(t));
+	}
 
-	@PostMapping("")
-	public Map<?,?> add(@RequestBody Product prd) {
-		var map = new HashMap<>();
-		logger.info("�߰��� ��ǰ: " + prd.toString());
-		map.put("message", productService.add(prd) == 1? "SUCCESS" : "FAILURE");
-		return map;
+	@DeleteMapping("/delete")
+	public ResponseEntity<Integer> delete(@RequestBody Product t) {
+		return ResponseEntity.ok(service.delete(t));
+	}
+
+	@GetMapping("/count")
+	public ResponseEntity<Integer> count() {
+		return ResponseEntity.ok(service.count());
+	}
+
+	@GetMapping("/one/{id}")
+	public ResponseEntity<Product> getOne(@PathVariable int id) {
+		return ResponseEntity.ok(service.getOne(id));
+	}
+
+	@GetMapping("/find/{id}")
+	public ResponseEntity<Optional<Product>> findById(@PathVariable int id) {
+		return ResponseEntity.ok(service.findById(id));
+	}
+
+	@GetMapping("/exists/{id}")
+	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+		return ResponseEntity.ok(service.existsById(id));
+	}
+
+	@GetMapping("/all")
+	public ResponseEntity<List<Product>> findAll() {
+		return ResponseEntity.ok(service.findAll());
 	}
 	
-	@GetMapping("/list")
-	public List<Product> list() {
-		return productRepository.selectAll();
-	}
-	
-	@GetMapping("/{prdId}")
-	public Product detail(@PathVariable int prdId) {
-		logger.info("��ȸ�� ��ǰ��ȣ: " + prdId);
-		return productRepository.selectById(prdId);
-	}
-	
-	@PutMapping("")
-	public Map<?,?> update(@RequestBody Product prd) {
-		var map = new HashMap<>();
-		map.put("message", productService.update(prd) == 1? "SUCCESS" : "FAILURE");
-		return map;
-	}
-	
-	@DeleteMapping("")
-	public Map<?,?> delete(@RequestBody Product prd) {
-		var map = new HashMap<>();
-		map.put("message", productService.delete(prd) == 1? "SUCCESS" : "FAILURE");
-		return map;
-	}
 }

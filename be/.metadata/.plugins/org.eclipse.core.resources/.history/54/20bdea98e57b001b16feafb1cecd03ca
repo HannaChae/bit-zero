@@ -1,0 +1,8 @@
+package com.example.demo.rcv.repository;
+
+interface IProductRepository{
+	
+}
+public interface ReceiverRepository {
+
+}

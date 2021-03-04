@@ -20,7 +20,9 @@ import com.example.demo.prd.domain.Product;
 import com.example.demo.rcv.domain.Receiver;
 import com.example.demo.usr.domain.User;
 
-@Entity @Table(name="orders")
+import lombok.Getter;
+
+@Entity @Table(name="orders") @Getter
 public class Order {
    @Id 
    @GeneratedValue(strategy = GenerationType.AUTO)

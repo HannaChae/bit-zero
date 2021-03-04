@@ -1,8 +1,6 @@
 package com.example.demo.brd.domain;
 
 
-import javax.persistence.Column;
-
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
@@ -21,4 +19,7 @@ public class BoardDto {
 	 private int count;
 	 private int brdLike;
 	 private int brdPwd;
+	 private int usrNo;
+	 private String usrName;
+	 private String usrEmail;
 }

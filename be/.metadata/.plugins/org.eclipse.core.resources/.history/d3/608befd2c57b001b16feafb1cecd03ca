@@ -1,0 +1,24 @@
+package com.example.demo.brd.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.brd.domain.Board;
+import com.example.demo.usr.domain.Board;
+import com.example.demo.usr.repository.IBoardRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+interface IBoardRepository{
+	
+}
+
+@Repository
+public class BoardRepositoryImpl extends QuerydslRepositorySupport 
+									implements IBoardRepository{
+	private final JPAQueryFactory qf;
+	public BoardRepositoryImpl(JPAQueryFactory qf) {
+		super(Board.class);
+		this.qf = qf;
+	}
+}

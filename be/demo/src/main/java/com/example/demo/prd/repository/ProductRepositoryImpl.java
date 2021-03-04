@@ -1,42 +1,19 @@
 package com.example.demo.prd.repository;
 
-import java.util.List;
-
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.prd.domain.Product;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
+
 
 @Repository
-public class ProductRepositoryImpl implements ProductRepository{
-
-	@Override
-	public int insert(Product prd) {
-		// TODO Auto-generated method stub
-		return 0;
+public class ProductRepositoryImpl extends QuerydslRepositorySupport 
+									implements IProductRepository{
+	private final JPAQueryFactory qf;
+	public ProductRepositoryImpl(JPAQueryFactory qf) {
+		super(Product.class);
+		this.qf = qf;
 	}
-
-	@Override
-	public List<Product> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Product selectById(int prdId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int update(Product prd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int delete(Product prd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

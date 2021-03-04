@@ -1,0 +1,9 @@
+package com.example.demo.usr.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.usr.domain.User;
+
+public interface MemberRepository extends JpaRepository<User, Integer>{
+
+}

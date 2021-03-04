@@ -2,14 +2,14 @@ package com.example.demo.brd.repository;
 
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.brd.domain.Board;
-
-public interface BoardRepository{
-	public int insertWriter(Board b);
-	public List<Board> selectAll();
-	public int update(Board b);
-	public int delete(Board b);
-	public Board selectById(String title);
+import com.example.demo.brd.domain.BoardDto;
+interface IBoardRepository{
+	public List<Board> findByTitle(String title);
+	public List<Board> findByWrittenDate(String writtenDate);
+	public List<BoardDto> findByUsrNo(int usrNo);
+}
+public interface BoardRepository extends JpaRepository<Board, Integer>,
+									IBoardRepository{
 }

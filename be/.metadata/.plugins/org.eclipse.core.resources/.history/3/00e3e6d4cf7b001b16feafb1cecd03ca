@@ -1,0 +1,22 @@
+package com.example.demo.prd.repository;
+
+import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.prd.domain.Product;
+import com.example.demo.prd.repository.IProductRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+
+interface IProductRepository{
+	
+}
+
+@Repository
+public class ProductRepositoryImpl extends QuerydslRepositorySupport 
+									implements IProductRepository{
+	private final JPAQueryFactory qf;
+	public ProductRepositoryImpl(JPAQueryFactory qf) {
+		super(Product.class);
+		this.qf = qf;
+	}
+}

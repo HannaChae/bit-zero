@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,11 +16,16 @@ import com.example.demo.prd.domain.Product;
 import com.example.demo.rpl.domain.Reply;
 import com.example.demo.usr.domain.User;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity @Table(name="boards")
+@Entity @Table(name="boards") @Getter
+@NamedQuery(
+name = "Board.findByTitle",
+query = "select b from Board b where b.title like :title")
 public class Board {
 	@Id @Column(name="brd_no") @GeneratedValue(strategy = GenerationType.AUTO) private int brdNo;
 	@Column(name="brd_Title") private String  brdTitle;
