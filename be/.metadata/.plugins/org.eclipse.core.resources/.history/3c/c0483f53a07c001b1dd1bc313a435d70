@@ -34,7 +34,7 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Board> findByBrdWrtDate(String brdWrtDate) {
+	public List<Board> findBybrdWrtDate(String brdWrtDate) {
 		return em.createQuery("select b from Board b where b.brd_wrt_date like :brdWrtDate")
 				.setParameter("brdWrtDate", brdWrtDate)
 				.getResultList();

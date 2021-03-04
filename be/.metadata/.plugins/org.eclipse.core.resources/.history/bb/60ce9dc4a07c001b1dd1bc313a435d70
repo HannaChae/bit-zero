@@ -6,5 +6,5 @@ import com.example.demo.brd.domain.Board;
 
 public interface BoardService {
 	public List<Board> findByTitle(String title);
-	public List<Board> findByBrdWrtDate(String brdWrtDate);
+	public List<Board> findByWrittenDate(String writtenDate);
 }

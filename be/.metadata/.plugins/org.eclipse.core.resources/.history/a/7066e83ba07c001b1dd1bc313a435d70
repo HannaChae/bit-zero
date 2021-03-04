@@ -30,7 +30,7 @@ public class Board {
 	@Id @Column(name="brd_no") @GeneratedValue(strategy = GenerationType.AUTO) private int brdNo;
 	@Column(name="brd_Title") private String  brdTitle;
 	@Column(name="brd_content") private String brdContent;
-	@Column(name="brd_wrt_date") private String brdWrtDate;
+	@Column(name="brd_written_date") private String brdwrittenDate;
 	@Column(name="brd_rank") private String brdRank;
 	@Column(name="brd_img") private String brdImg;
 	@Column(name="brd_kind") private int brdKind;

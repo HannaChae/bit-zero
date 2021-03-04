@@ -32,7 +32,7 @@ public class BoardServiceImpl extends AbstractService<Board>
 		return repo.findByBrdTitle(brdTitle);
 	}
 	@Override
-	public List<Board> findByBrdWrtDate(String brdWrtDate) {
-		return repo.findByBrdWrtDate(brdWrtDate);
+	public List<Board> findByWrittenDate(String writtenDate) {
+		return repo.findByWrittenDate(writtenDate);
 	}
 }

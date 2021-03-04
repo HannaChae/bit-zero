@@ -34,9 +34,9 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Board> findByBrdWrtDate(String brdWrtDate) {
-		return em.createQuery("select b from Board b where b.brd_wrt_date like :brdWrtDate")
-				.setParameter("brdWrtDate", brdWrtDate)
+	public List<Board> findByWrittenDate(String writtenDate) {
+		return em.createQuery("select b from Board b where b.written_date like :writtenDate")
+				.setParameter("writtenDate", writtenDate)
 				.getResultList();
 	}
 	@SuppressWarnings("unchecked")
@@ -46,7 +46,7 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport
 				+ "b.brd_no brdNum "
 				+ "b.brd_title brdTitle "
 				+ "b.brd_content brdContent "
-				+ "b.brd_wrt_date brdWrtDate "
+				+ "b.brdwritten_date brdwrittenDate "
 				+ "b.brd_rank brdRank "
 				+ "b.brd_img brdImg "
 				+ "b.brd_kind brdKind "

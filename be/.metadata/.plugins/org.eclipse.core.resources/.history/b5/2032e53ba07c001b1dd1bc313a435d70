@@ -11,7 +11,7 @@ public class BoardDto {
 	 private int brdNo;
 	 private String  brdTitle;
 	 private String brdContent;
-	 private String brdWrtDate;
+	 private String brdwrittenDate;
 	 private String brdRank;
 	 private String brdImg;
 	 private int brdKind;

@@ -7,7 +7,7 @@ import com.example.demo.brd.domain.Board;
 import com.example.demo.brd.domain.BoardDto;
 interface IBoardRepository{
 	public List<Board> findByBrdTitle(String brdTitle);
-	public List<Board> findByBrdWrtDate(String brdWrtDate);
+	public List<Board> findBybrdwrtDate(String brdwrtDate);
 	public List<BoardDto> findByUsrNo(int usrNo);
 }
 public interface BoardRepository extends JpaRepository<Board, Integer>,
