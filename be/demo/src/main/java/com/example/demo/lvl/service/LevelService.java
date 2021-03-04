@@ -1,5 +1,5 @@
 package com.example.demo.lvl.service;
 
-public class LevelService {
+public interface LevelService {
 
 }

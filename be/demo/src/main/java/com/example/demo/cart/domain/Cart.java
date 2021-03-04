@@ -11,7 +11,9 @@ import javax.persistence.Table;
 
 import com.example.demo.ord.domain.Order;
 
-@Entity @Table(name="carts")
+import lombok.Getter;
+
+@Entity @Table(name="carts") @Getter
 public class Cart {
    @Id 
    @GeneratedValue(strategy = GenerationType.AUTO)

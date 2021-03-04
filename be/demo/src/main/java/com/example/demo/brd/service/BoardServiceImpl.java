@@ -28,8 +28,8 @@ public class BoardServiceImpl extends AbstractService<Board>
 		return (getOne(t.getBrdNo())==null) ? 1 : 0;
 	}
 	@Override
-	public List<Board> findByTitle(String title) {
-		return repo.findByTitle(title);
+	public List<Board> findByTitle(String brdTitle) {
+		return repo.findByBrdTitle(brdTitle);
 	}
 	@Override
 	public List<Board> findByWrittenDate(String writtenDate) {

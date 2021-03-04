@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Getter;
+
 @Entity
-@Table(name = "levels")
+@Table(name = "levels") @Getter
 public class Level {
 
 	@Id

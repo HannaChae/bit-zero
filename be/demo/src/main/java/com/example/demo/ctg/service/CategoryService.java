@@ -1,5 +1,5 @@
 package com.example.demo.ctg.service;
 
-public class CategoryService {
+public interface CategoryService {
 
 }

@@ -1,5 +1,14 @@
 package com.example.demo.cart.repository;
 
-public class CartRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.cart.domain.Cart;
+import com.example.demo.cart.repository.ICartRepository;
+
+interface ICartRepository{
+	
+}
+public interface CartRepository extends JpaRepository<Cart, Integer>,
+											ICartRepository{
 
 }

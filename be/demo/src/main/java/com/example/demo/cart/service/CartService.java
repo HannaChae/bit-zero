@@ -1,5 +1,5 @@
 package com.example.demo.cart.service;
 
-public class CartService {
+public interface CartService {
 
 }

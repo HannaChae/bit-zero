@@ -1,5 +1,14 @@
 package com.example.demo.ctg.repository;
 
-public class CategoryRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.ctg.domain.Category;
+import com.example.demo.ctg.repository.ICategoryRepository;
+
+interface ICategoryRepository{
+	
+}
+public interface CategoryRepository extends JpaRepository<Category, Integer>,
+											ICategoryRepository{
 
 }

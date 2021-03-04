@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.cmm.service.AbstractService;
 import com.example.demo.rcv.domain.Receiver;
 import com.example.demo.rcv.repository.ReceiverRepository;
-import com.example.demo.rcv.service.ReceiverService;
 
 import lombok.RequiredArgsConstructor;
 

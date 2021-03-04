@@ -24,8 +24,8 @@ import java.util.List;
 
 @Entity @Table(name="boards") @Getter
 @NamedQuery(
-name = "Board.findByTitle",
-query = "select b from Board b where b.title like :title")
+name = "Board.findByBrdTitle",
+query = "select b from Board b where b.brdTitle like :brdTitle")
 public class Board {
 	@Id @Column(name="brd_no") @GeneratedValue(strategy = GenerationType.AUTO) private int brdNo;
 	@Column(name="brd_Title") private String  brdTitle;

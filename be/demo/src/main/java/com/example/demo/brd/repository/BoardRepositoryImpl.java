@@ -26,9 +26,9 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Board> findByTitle(String title) {
-		return em.createNamedQuery("Board.findByTitle")
-				.setParameter("title", title)
+	public List<Board> findByBrdTitle(String brdTitle) {
+		return em.createNamedQuery("Board.findByBrdTitle")
+				.setParameter("brdTitle", brdTitle)
 				.getResultList();
 	}
 	

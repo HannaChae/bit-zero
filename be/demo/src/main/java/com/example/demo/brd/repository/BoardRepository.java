@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.brd.domain.Board;
 import com.example.demo.brd.domain.BoardDto;
 interface IBoardRepository{
-	public List<Board> findByTitle(String title);
+	public List<Board> findByBrdTitle(String brdTitle);
 	public List<Board> findByWrittenDate(String writtenDate);
 	public List<BoardDto> findByUsrNo(int usrNo);
 }
