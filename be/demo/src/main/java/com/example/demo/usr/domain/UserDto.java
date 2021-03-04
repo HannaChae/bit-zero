@@ -25,5 +25,5 @@ public class UserDto {
 
 	private String usrAddr;
 	
-	private String usrNickName;
+	private String usrNickname;
 }

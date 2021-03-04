@@ -23,7 +23,7 @@ import lombok.Getter;
 
 @Entity @Getter
 public class Payment {
-   @Id @GeneratedValue(strategy = GenerationType.AUTO) @Column(name="pay_no") private int payNo;
+   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name="pay_no") private int payNo;
    @Column(name="pay_price") private String payPrice;
    @Column(name="pay_amount") private int payAmount;
    @Column(name="dvr_fee") private String dvrFee;

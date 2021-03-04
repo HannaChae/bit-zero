@@ -21,7 +21,7 @@ import lombok.Getter;
 @Entity @Getter
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "usr_no")
 	private int usrNo;
 
@@ -49,8 +49,8 @@ public class User {
 	@Column(name = "usr_addr")
 	private String usrAddr;
 	
-	@Column(name = "usr_nick_name")
-	private String usrNickName;
+	@Column(name = "usr_nickname")
+	private String usrNickname;
 	
 	@ManyToOne @JoinColumn(name="level")
 	private Level level;

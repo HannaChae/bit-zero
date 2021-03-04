@@ -22,7 +22,7 @@ import lombok.Getter;
 
 @Entity @Getter
 public class Product {
-   @Id @GeneratedValue(strategy = GenerationType.AUTO)
+   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="prd_no") private int prdNo;
    @Column(name="prd_name") private String prdName;
    @Column(name="prd_img") private String prdImg;

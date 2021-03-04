@@ -17,7 +17,7 @@ import lombok.Getter;
 
 @Entity @Getter
 public class Category {
-   @Id @GeneratedValue(strategy = GenerationType.AUTO)
+   @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="ctg_no") private int ctgNo;
    @Column(name="ctg_name") private String ctgName;
 

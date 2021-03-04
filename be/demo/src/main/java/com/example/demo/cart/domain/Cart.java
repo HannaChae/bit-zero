@@ -16,7 +16,7 @@ import lombok.Getter;
 @Entity @Getter
 public class Cart {
    @Id 
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    @Column(name="cart_no") private int cartNo;
    @Column(name="cart_amount") private int cartAmount;
    

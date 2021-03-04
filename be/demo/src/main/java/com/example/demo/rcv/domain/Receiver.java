@@ -17,7 +17,7 @@ import lombok.Getter;
 @Entity  @Getter
 public class Receiver {
       @Id 
-      @GeneratedValue(strategy = GenerationType.AUTO)
+      @GeneratedValue(strategy = GenerationType.IDENTITY)
       @Column(name="rcv_no") private int rcvNo;
       @Column(name="rcv_name") private String rcvName;
       @Column(name="rcv_phone") private String rcvPhone;

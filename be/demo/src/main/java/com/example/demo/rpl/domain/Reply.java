@@ -2,6 +2,8 @@ package com.example.demo.rpl.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,7 +16,7 @@ import lombok.Getter;
 
 @Entity @Getter
 public class Reply {
-	@Id @Column(name="rpl_no") private int rplNo;
+	@Id @Column(name="rpl_no") @GeneratedValue(strategy = GenerationType.IDENTITY) private int rplNo;
 	@Column(name="rpl_content") private String rplContent;
 	
 	
