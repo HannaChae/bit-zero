@@ -11,8 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import com.example.demo.ctg.domain.Category;
 import com.example.demo.pay.domain.Payment;
 
@@ -23,7 +21,7 @@ import lombok.Getter;
 @Entity @Getter
 public class Product {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name="prd_no") private int prdNo;
+   @Column(name="prd_no") private long prdNo;
    @Column(name="prd_name") private String prdName;
    @Column(name="prd_img") private String prdImg;
    @Column(name="prd_price") private String prdPrice;

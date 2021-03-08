@@ -8,5 +8,5 @@ import lombok.Data;
 
 @Component @Data @Lazy
 public class LevelDto {
-	private int level;
+	private long level;
 }

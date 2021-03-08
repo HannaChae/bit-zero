@@ -8,15 +8,15 @@ import lombok.Data;
 
 @Data @Component @Lazy
 public class BoardDto {
-	 private int brdNo;
+	 private long brdNo;
 	 private String  brdTitle;
 	 private String brdContent;
 	 private String brdWrtDate;
 	 private String brdRank;
 	 private String brdImg;
 	 private String usrNickname;
-	 private int brdKind;
-	 private int count;
+	 private long brdKind;
+	 private long count;
 	 private String brdLike;
 	 private String brdPwd;
 }

@@ -27,32 +27,32 @@ public class ReceiverController extends AbstractController<Receiver> {
 	final ReceiverServiceImpl service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Integer> save(@RequestBody Receiver t) {
+	public ResponseEntity<Long> save(@RequestBody Receiver t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody Receiver t) {
+	public ResponseEntity<Long> delete(@RequestBody Receiver t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 
 	@GetMapping("/count")
-	public ResponseEntity<Integer> count() {
+	public ResponseEntity<Long> count() {
 		return ResponseEntity.ok(service.count());
 	}
 
 	@GetMapping("/one/{id}")
-	public ResponseEntity<Receiver> getOne(@PathVariable int id) {
+	public ResponseEntity<Receiver> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Receiver>> findById(@PathVariable int id) {
+	public ResponseEntity<Optional<Receiver>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 
 	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
 	}
 

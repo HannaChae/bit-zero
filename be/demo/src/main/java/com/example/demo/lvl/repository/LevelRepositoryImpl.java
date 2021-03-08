@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.lvl.domain.Level;
 @Repository
 public class LevelRepositoryImpl extends QuerydslRepositorySupport 
-									implements ILevelRepository{
+									implements LevelCustomRepository{
 	// private final JPAQueryFactory qf;
 	public LevelRepositoryImpl() {
 		super(Level.class);

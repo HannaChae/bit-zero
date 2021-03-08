@@ -7,7 +7,7 @@ import com.example.demo.cart.domain.Cart;
 
 @Repository
 public class CartRepositoryImpl extends QuerydslRepositorySupport 
-									implements ICartRepository{
+									implements CartCustomRepository{
 	// private final JPAQueryFactory qf;
 	public CartRepositoryImpl() {
 		super(Cart.class);

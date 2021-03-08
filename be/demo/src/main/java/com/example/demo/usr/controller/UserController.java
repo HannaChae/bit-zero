@@ -3,8 +3,6 @@ package com.example.demo.usr.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.cmm.controller.AbstractController;
@@ -32,32 +29,32 @@ public class UserController extends AbstractController<User> {
 	final UserServiceImpl service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Integer> save(@RequestBody User t) {
+	public ResponseEntity<Long> save(@RequestBody User t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody User t) {
+	public ResponseEntity<Long> delete(@RequestBody User t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 	
 	@GetMapping("/count")
-	public ResponseEntity<Integer> count() {
+	public ResponseEntity<Long> count() {
 		return ResponseEntity.ok(service.count());
 	}
 	
 	@GetMapping("/one/{id}")
-	public ResponseEntity<User> getOne(@PathVariable int id) {
+	public ResponseEntity<User> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 	
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<User>> findById(@PathVariable int id) {
+	public ResponseEntity<Optional<User>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 	
 	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
 	}
 	

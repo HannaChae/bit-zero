@@ -17,13 +17,13 @@ public class ProductServiceImpl extends AbstractService<Product>
 								implements ProductService{
 	private final ProductRepository repo;
 
-	@Override public int save(Product t) {return (repo.save(t)!=null) ? 1 : 0 ;}
-	@Override public int count() {return (int) repo.count();}
-	@Override public Product getOne(int id) {return repo.getOne(id);}
-	@Override public Optional<Product> findById(int id) {return repo.findById(id);}
-	@Override public boolean existsById(int id) {return repo.existsById(id);}
+	@Override public long save(Product t) {return (repo.save(t)!=null) ? 1 : 0 ;}
+	@Override public long count() {return (long) repo.count();}
+	@Override public Product getOne(long id) {return repo.getOne(id);}
+	@Override public Optional<Product> findById(long id) {return repo.findById(id);}
+	@Override public boolean existsById(long id) {return repo.existsById(id);}
 	@Override public List<Product> findAll() {return repo.findAll();}
-	@Override public int delete(Product t) {
+	@Override public long delete(Product t) {
 		repo.delete(t); 
 		return (getOne(t.getPrdNo())==null) ? 1 : 0;
 	}

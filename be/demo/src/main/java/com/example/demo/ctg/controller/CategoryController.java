@@ -27,32 +27,32 @@ public class CategoryController extends AbstractController<Category> {
 	final CategoryServiceImpl service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Integer> save(@RequestBody Category t) {
+	public ResponseEntity<Long> save(@RequestBody Category t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody Category t) {
+	public ResponseEntity<Long> delete(@RequestBody Category t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 
 	@GetMapping("/count")
-	public ResponseEntity<Integer> count() {
+	public ResponseEntity<Long> count() {
 		return ResponseEntity.ok(service.count());
 	}
 
 	@GetMapping("/one/{id}")
-	public ResponseEntity<Category> getOne(@PathVariable int id) {
+	public ResponseEntity<Category> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Category>> findById(@PathVariable int id) {
+	public ResponseEntity<Optional<Category>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 
 	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
 	}
 

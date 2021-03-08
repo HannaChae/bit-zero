@@ -7,6 +7,6 @@ import lombok.Data;
 
 @Data @Component @Lazy
 public class CartDto {
-	private int cartNo;
-	private int cartAmount;
+	private long cartNo;
+	private long cartAmount;
 }

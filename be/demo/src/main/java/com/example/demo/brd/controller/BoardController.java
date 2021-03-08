@@ -27,32 +27,32 @@ public class BoardController extends AbstractController<Board> {
 	final BoardServiceImpl service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Integer> save(@RequestBody Board t) {
+	public ResponseEntity<Long> save(@RequestBody Board t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody Board t) {
+	public ResponseEntity<Long> delete(@RequestBody Board t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 
 	@GetMapping("/count")
-	public ResponseEntity<Integer> count() {
+	public ResponseEntity<Long> count() {
 		return ResponseEntity.ok(service.count());
 	}
 
 	@GetMapping("/one/{id}")
-	public ResponseEntity<Board> getOne(@PathVariable int id) {
+	public ResponseEntity<Board> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Board>> findById(@PathVariable int id) {
+	public ResponseEntity<Optional<Board>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 
 	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
 	}
 

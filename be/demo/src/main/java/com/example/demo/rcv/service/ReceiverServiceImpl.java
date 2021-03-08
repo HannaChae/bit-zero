@@ -17,13 +17,13 @@ public class ReceiverServiceImpl extends AbstractService<Receiver>
 								implements ReceiverService{
 	private final ReceiverRepository repo;
 
-	@Override public int save(Receiver t) {return (repo.save(t)!=null) ? 1 : 0 ;}
-	@Override public int count() {return (int) repo.count();}
-	@Override public Receiver getOne(int id) {return repo.getOne(id);}
-	@Override public Optional<Receiver> findById(int id) {return repo.findById(id);}
-	@Override public boolean existsById(int id) {return repo.existsById(id);}
+	@Override public long save(Receiver t) {return (repo.save(t)!=null) ? 1 : 0 ;}
+	@Override public long count() {return (long) repo.count();}
+	@Override public Receiver getOne(long id) {return repo.getOne(id);}
+	@Override public Optional<Receiver> findById(long id) {return repo.findById(id);}
+	@Override public boolean existsById(long id) {return repo.existsById(id);}
 	@Override public List<Receiver> findAll() {return repo.findAll();}
-	@Override public int delete(Receiver t) {
+	@Override public long delete(Receiver t) {
 		repo.delete(t); 
 		return (getOne(t.getRcvNo())==null) ? 1 : 0;
 	}

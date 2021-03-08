@@ -10,11 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.brd.domain.Board;
 import com.example.demo.brd.domain.BoardDto;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 
 @Repository
 public class BoardRepositoryImpl extends QuerydslRepositorySupport 
-									implements IBoardRepository{
+									implements BoardCustomRepository{
 	// private final JPAQueryFactory qf;
 	private final EntityManager em;
 	
@@ -41,7 +40,7 @@ public class BoardRepositoryImpl extends QuerydslRepositorySupport
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<BoardDto> findByUsrNo(int usrNo) {
+	public List<BoardDto> findByUsrNo(long usrNo) {
 		return em.createQuery("select "
 				+ "b.brd_no brdNum "
 				+ "b.brd_title brdTitle "

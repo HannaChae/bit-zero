@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 @Component @Data @Lazy
 public class PaymentDto {
-	 private int payNo;
+	 private long payNo;
 	 private String payPrice;
-	 private int payAmount;
+	 private long payAmount;
 	 private String dvrFee;
 	 private String payDate;
 	 private String payState;

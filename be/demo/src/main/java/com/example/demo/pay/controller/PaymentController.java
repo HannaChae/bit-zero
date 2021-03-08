@@ -27,32 +27,32 @@ public class PaymentController extends AbstractController<Payment> {
 	final PaymentServiceImpl service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Integer> save(@RequestBody Payment t) {
+	public ResponseEntity<Long> save(@RequestBody Payment t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody Payment t) {
+	public ResponseEntity<Long> delete(@RequestBody Payment t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 
 	@GetMapping("/count")
-	public ResponseEntity<Integer> count() {
+	public ResponseEntity<Long> count() {
 		return ResponseEntity.ok(service.count());
 	}
 
 	@GetMapping("/one/{id}")
-	public ResponseEntity<Payment> getOne(@PathVariable int id) {
+	public ResponseEntity<Payment> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Payment>> findById(@PathVariable int id) {
+	public ResponseEntity<Optional<Payment>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 
 	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
 	}
 

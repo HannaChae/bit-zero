@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Component @Data @Lazy
 public class ReceiverDto {
-	 private int rcvNo;
+	 private long rcvNo;
 	 private String rcvName;
      private String rcvPhone;
      private String rcvAddr;

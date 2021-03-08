@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data @Lazy @Component
 public class ReplyDto {
-	private int rplNo;
+	private long rplNo;
 	private String rplContent;
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 import lombok.Data;
 @Data @Component @Lazy
 public class CategoryDto {
-	private int ctgNo;
+	private long ctgNo;
 	private String ctgName;
 }

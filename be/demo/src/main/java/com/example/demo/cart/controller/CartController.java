@@ -27,32 +27,32 @@ public class CartController extends AbstractController<Cart> {
 	final CartServiceImpl service;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Integer> save(@RequestBody Cart t) {
+	public ResponseEntity<Long> save(@RequestBody Cart t) {
 		return ResponseEntity.ok(service.save(t));
 	}
 
 	@DeleteMapping("/delete")
-	public ResponseEntity<Integer> delete(@RequestBody Cart t) {
+	public ResponseEntity<Long> delete(@RequestBody Cart t) {
 		return ResponseEntity.ok(service.delete(t));
 	}
 
 	@GetMapping("/count")
-	public ResponseEntity<Integer> count() {
+	public ResponseEntity<Long> count() {
 		return ResponseEntity.ok(service.count());
 	}
 
 	@GetMapping("/one/{id}")
-	public ResponseEntity<Cart> getOne(@PathVariable int id) {
+	public ResponseEntity<Cart> getOne(@PathVariable long id) {
 		return ResponseEntity.ok(service.getOne(id));
 	}
 
 	@GetMapping("/find/{id}")
-	public ResponseEntity<Optional<Cart>> findById(@PathVariable int id) {
+	public ResponseEntity<Optional<Cart>> findById(@PathVariable long id) {
 		return ResponseEntity.ok(service.findById(id));
 	}
 
 	@GetMapping("/exists/{id}")
-	public ResponseEntity<Boolean> existsById(@PathVariable int id) {
+	public ResponseEntity<Boolean> existsById(@PathVariable long id) {
 		return ResponseEntity.ok(service.existsById(id));
 	}
 

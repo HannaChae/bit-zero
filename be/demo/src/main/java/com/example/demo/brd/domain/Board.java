@@ -9,7 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import com.example.demo.pay.domain.Payment;
 import com.example.demo.prd.domain.Product;
@@ -27,15 +26,15 @@ import java.util.List;
 name = "Board.findByBrdTitle",
 query = "select b from Board b where b.brdTitle like :brdTitle")
 public class Board {
-	@Id @Column(name="brd_no") @GeneratedValue(strategy = GenerationType.IDENTITY) private int brdNo;
+	@Id @Column(name="brd_no") @GeneratedValue(strategy = GenerationType.IDENTITY) private long brdNo;
 	@Column(name="brd_Title") private String  brdTitle;
 	@Column(name="brd_content") private String brdContent;
 	@Column(name="brd_wrt_date") private String brdWrtDate;
 	@Column(name="brd_rank") private String brdRank;
 	@Column(name="brd_img") private String brdImg;
 	@Column(name="usr_nickname") private String usrNickname;
-	@Column(name="brd_kind") private int brdKind;
-	@Column(name="brd_count") @GeneratedValue(strategy = GenerationType.IDENTITY) private int count;
+	@Column(name="brd_kind") private long brdKind;
+	@Column(name="brd_count") @GeneratedValue(strategy = GenerationType.IDENTITY) private long count;
 	@Column(name="brd_like") private String brdLike;
 	@Column(name="brd_pwd") private String brdPwd;
 	

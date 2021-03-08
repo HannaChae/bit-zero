@@ -1,0 +1,81 @@
+package com.example.demo.usr.domain;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
+
+import lombok.Getter;
+
+@Component @Lazy @Getter
+public class UserDto implements UserDetails{
+	private static final long serialVersionUID = 1L;
+	private long usrNo;
+	private String usrName;
+	private String usrEmail;
+	private String usrPwd;
+	private String usrAges;
+	private String usrCity;
+	private String usrGender;
+	private String usrPhone;
+	private String usrAddr;
+	private String usrNickname;
+	
+	private Collection<? extends GrantedAuthority> autorities;
+	
+	public UserDto(long usrNo, String usrName, String usrEmail, String usrPwd,
+			String usrPhone, Collection<? extends GrantedAuthority> autorities) {
+		this.usrNo = usrNo;
+		this.usrName = usrName;
+		this.usrEmail = usrEmail;
+		this.usrPwd = usrPwd;
+		this.usrPhone = usrPhone;
+		this.autorities = autorities;
+	}
+	
+	public static UserDto create(User user) {
+		List<GrantedAuthority> authorities  = 
+			user.getRoles().stream()
+			.map(role -> new SimpleGrantedAuthority(role.getRoleName().name()))
+			.collect(Collectors.toList());
+		return new UserDto(user.getUsrNo(), user.getUsrName(), user.getUsrEmail(),
+				user.getUsrPwd(), user.getUsrPhone(), authorities);
+	}
+	
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		UserDto that = (UserDto) o;
+		return Objects.equals(usrNo, that.usrNo);
+	}
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		return false;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return false;
+	}
+	@Override
+	public boolean isEnabled() {
+		return false;
+	}
+}

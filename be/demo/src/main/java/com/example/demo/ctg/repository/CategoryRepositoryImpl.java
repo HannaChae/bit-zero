@@ -7,7 +7,7 @@ import com.example.demo.ctg.domain.Category;
 
 @Repository
 public class CategoryRepositoryImpl extends QuerydslRepositorySupport 
-									implements ICategoryRepository{
+									implements CategoryCustomRepository{
 	// private final JPAQueryFactory qf;
 	public CategoryRepositoryImpl() {
 		super(Category.class);

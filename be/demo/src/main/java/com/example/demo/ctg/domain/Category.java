@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import com.example.demo.prd.domain.Product;
 
@@ -18,7 +17,7 @@ import lombok.Getter;
 @Entity @Getter
 public class Category {
    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Column(name="ctg_no") private int ctgNo;
+   @Column(name="ctg_no") private long ctgNo;
    @Column(name="ctg_name") private String ctgName;
 
    @OneToMany(mappedBy = "category")

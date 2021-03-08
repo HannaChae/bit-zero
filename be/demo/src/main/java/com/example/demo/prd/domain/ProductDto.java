@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Component @Data @Lazy
 public class ProductDto {
-	 private int prdNo;
+	 private long prdNo;
 	 private String prdName;
 	 private String prdPrice;
 	 private String prdInv;
