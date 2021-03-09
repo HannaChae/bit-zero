@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="pay"/>
+		<item key="selection" value="long"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="int"/>
+			<item value="integer"/>
+			<item value="Integer"/>
+			<item value="long"/>
+			<item value=";ong"/>
+			<item value="aws"/>
 			<item value="ord"/>
 			<item value="spring.jpa.properties.hibernate.dialect"/>
 			<item value="Category"/>
@@ -17,9 +23,12 @@
 			<item value="usr"/>
 			<item value="User"/>
 			<item value="Product"/>
-			<item value="Board"/>
 		</list>
 		<list key="replacehistory">
+			<item value="long"/>
+			<item value="Long"/>
+			<item value="int"/>
+			<item value=";ong"/>
 			<item value="pay"/>
 			<item value="Cart"/>
 			<item value="Category"/>
