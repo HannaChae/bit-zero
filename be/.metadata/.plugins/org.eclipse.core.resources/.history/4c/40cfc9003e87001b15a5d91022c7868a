@@ -1,0 +1,20 @@
+package com.example.demo.shape;
+
+public class Circle extends Shape {
+	private int radious;
+	
+	public Circle() {
+		area = 1;
+		shape = "원";
+		radious = 1;
+		numberOfLines = 1;
+		System.out.println("Circle() 호출");		
+	}
+	
+	public void calArea() {
+		System.out.println("원넓이계산입니다!");
+		area = Math.PI*radious*radious;
+	}
+
+
+}

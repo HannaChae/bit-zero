@@ -1,13 +1,13 @@
 spring:
     datasource:
-        url: jdbc:mariadb://myinstance.c8n0dfiduht4.ap-northeast-2.rds.amazonaws.com/myinstance
+        url: jdbc:mariadb://localhost:3306/mariadb
         driverClassName: org.mariadb.jdbc.Driver
-        username: myinstance
-        password: myinstance
+        username: root
+        password: root
     jpa:
         database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
         hibernate:
             ddl-auto: update
-auth:
-  jwtExpirationMs: 600000
-  jwtSecret: JWTSuperSecretKey
+#auth:
+#  jwtExpirationMs: 600000
+#  jwtSecret: JWTSuperSecretKey

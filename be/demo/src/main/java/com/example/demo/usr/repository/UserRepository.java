@@ -17,12 +17,12 @@ interface UserCustomRepository{
 @EnableJpaRepositories
 public interface UserRepository extends JpaRepository<User, Long>,
 UserCustomRepository{
-	  public Optional<User> findByEmail(String usrEmail);
-	  public Optional<User> findByUseridOrEmail(String usrid, String usrEmail);
-	  public List<User> findByUserNumIn(List<Long> usrNo);
-	  public Optional<User> findByUserid(String usrid);
-	  public Boolean existsByUserid(String usrid);
-	  public Boolean existsByEmail(String usrEmail);
+	  public Optional<User> findByUsrEmail(String usrEmail);
+	  // public Optional<User> findByUseridOrEmail(String usrid, String usrEmail);
+	  // public List<User> findByUserNumIn(List<Long> usrNo);
+	  // public Optional<User> findByUserid(String usrid);
+	  // public Boolean existsByUserid(String usrid);
+	  public Boolean existsByUsrEmail(String usrEmail);
 	
 	@Query(value="update User u set u.usr_pwd = :usrPwd,"
 			+ " u.usr_phone = :usrPhone"

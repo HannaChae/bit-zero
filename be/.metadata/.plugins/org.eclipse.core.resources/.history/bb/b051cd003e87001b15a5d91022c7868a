@@ -1,0 +1,20 @@
+package com.example.demo.shape;
+
+public class Shape {
+	double area;
+	int numberOfLines;
+	String shape;
+	
+	public Shape() {
+		System.out.println("Shape() 호출");
+	}
+	
+	public void print() {
+		System.out.println(shape + ">>선의개수: " + numberOfLines +" 넓이: "+ area);
+	}
+	
+	public void calArea() {
+		System.out.println("도형넓이계산!!");
+	}
+
+}

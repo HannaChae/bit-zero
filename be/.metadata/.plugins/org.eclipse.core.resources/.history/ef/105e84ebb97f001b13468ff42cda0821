@@ -1,5 +1,0 @@
-package com.example.demo.sec.util;
-
-public interface AuthToken {
-
-}

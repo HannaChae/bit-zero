@@ -1,7 +1,0 @@
-package com.example.demo.sec.util;
-
-public interface CustomAuthToken {
-    String getToken();
-}
- 
-

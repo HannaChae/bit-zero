@@ -3,14 +3,9 @@ package com.example.demo.usr.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.usr.domain.User;
-import com.example.demo.usr.domain.UserDto;
 import com.example.demo.usr.repository.UserRepository;
 import com.example.demo.cmm.service.AbstractService;
 
@@ -31,19 +26,5 @@ public class UserServiceImpl extends AbstractService<User>
 	@Override public long delete(User t) {
 		repo.delete(t); 
 		return (getOne(t.getUsrNo())==null) ? 1 : 0;
-	}
-	@Override
-	public UserDetails loadUserByUsername(String usrEmail) throws UsernameNotFoundException {
-		User user = null;
-		return UserDto.create(
-				repo.findByUseridOrEmail(usrEmail, usrEmail)
-				.orElseThrow(() -> new UsernameNotFoundException("이메일을 찾을 수 없습니다."))
-				);
-	}
-	@Transactional
-	public UserDetails loadUserById(Long id) {
-		User user = repo.findById(id)
-				.orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + id));
-		return UserDto.create(user);
 	}
 }

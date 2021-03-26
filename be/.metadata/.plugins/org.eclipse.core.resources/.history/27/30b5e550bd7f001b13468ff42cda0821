@@ -1,2 +1,0 @@
-auth.jwtSecret=JWTSuperSecretKey
-auth.jwtExpirationMs=600000

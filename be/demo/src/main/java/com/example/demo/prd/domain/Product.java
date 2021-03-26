@@ -26,6 +26,7 @@ public class Product {
    @Column(name="prd_img") private String prdImg;
    @Column(name="prd_price") private String prdPrice;
    @Column(name="prd_inv") private String prdInv;
+   @Column(name="ctg_name") private String ctgName;
 
    @ManyToOne
    @JoinColumn(name="ctg_no")

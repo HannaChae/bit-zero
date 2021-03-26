@@ -1,0 +1,8 @@
+package com.example.demo.shape;
+
+public class ShapeTest {
+	private int a, b, c;
+	public double average() {
+		return (a+b+c)/3;
+	}
+}

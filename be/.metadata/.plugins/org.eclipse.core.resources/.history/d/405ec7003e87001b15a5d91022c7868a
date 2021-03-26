@@ -1,0 +1,8 @@
+package com.example.demo.shape;
+
+public class ShapeTest {
+	public static void main(String[] aras) {
+		Shape s = new Circle();
+	}
+
+}

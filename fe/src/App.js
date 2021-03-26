@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { Component, useState, useEffect, Suspense, lazy } from "react";
 import ScrollToTop from "./helpers/scroll-top";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
@@ -110,6 +110,7 @@ const Checkout = lazy(() => import("./pages/other/Checkout"));
 const NotFound = lazy(() => import("./pages/other/NotFound"));
 
 const App = (props) => {
+
   useEffect(() => {
     props.dispatch(
       loadLanguages({

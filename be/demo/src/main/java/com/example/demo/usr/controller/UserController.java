@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserController extends AbstractController<User> {
 	final UserServiceImpl service;
 	
