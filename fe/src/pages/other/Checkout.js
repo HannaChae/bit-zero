@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Component, useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
@@ -13,17 +13,77 @@ import DaumPostcode from './DaumPostcode';
 import Modal from  '../../components/modals/AddrModal';
 import $ from "jquery";
 import jQuery from "jquery";
+import { CompareRounded } from "@material-ui/icons";
 window.$ = window.jQuery = jQuery;
 
-const Checkout = ({ location, cartItems, currency }) => {
+const Checkout = ({ location, cartItems, currency}) => {
+  const [ addr, setAddr ] = useState("");
+  const [ extraAddr, setExtraAddr ] = useState("");
+  const [ postcode, setPostcode ] = useState("");
+  const [ targetValue, setTargetValue ] = useState("");
+  const [ text, setText ] = useState("");
 
-  const [ modalOpen, setModalOpen ] = useState(false);
-  const openModal = () => {
-      setModalOpen(true);
-  }
-  const closeModal = () => {
-      setModalOpen(false);
-  }
+  const execPostCode = () => {
+    new window.daum.Postcode({
+      oncomplete: data => {
+        // 팝업에서 검색결과 항목을 클릭했을    때 실행할 코드를 작성하는 부분.
+
+        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+        // const addr = ""; // 주소 변수
+        // const extraAddr = ""; // 참고항목 변수
+
+        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+        if (data.userSelectedType === "R") {
+          // 사용자가 도로명 주소를 선택했을 경우
+          setAddr(data.roadAddress)
+        } else {
+          // 사용자가 지번 주소를 선택했을 경우(J)
+          setExtraAddr(data.jibunAddress)
+        }
+
+        // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+        if (data.userSelectedType === "R") {
+          // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+          // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+          if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+              setExtraAddr(setExtraAddr + data.bname)
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== "" && data.apartment === "Y") {
+              setExtraAddr
+                  (setExtraAddr + setExtraAddr !== ""
+                    ? ", " + data.buildingName
+                    : data.buildingName)
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (setExtraAddr !== "") {
+                setAddr(" (" + setExtraAddr + ")")
+            }
+            setExtraAddr(setExtraAddr)
+            // 조합된 참고항목을 해당 필드에 넣는다.
+            // document.getElementById(
+            //   "extraAddress"
+            // ).value = this.state.extraAddr;
+          } else {
+            // document.getElementById("extraAddress").value = "";
+            setExtraAddr("")
+          }
+            // setPostcode(" [" + data.zonecode + "]"),
+            // setAddr(this.state.addr)
+
+        }
+      }
+    }).open();
+  };
+
+
+  // const [ modalOpen, setModalOpen ] = useState(false);
+  // const openModal = () => {
+  //     setModalOpen(true);
+  // }
+  // const closeModal = () => {
+  //     setModalOpen(false);
+  // }
 
   const { pathname } = location;
   let cartTotalPrice = 0;
@@ -31,26 +91,25 @@ const Checkout = ({ location, cartItems, currency }) => {
 
   const [rcvName, setRcvName] = useState('')
   const [rcvPhone, setRcvPhone] = useState('')
-  const [rcvAddr, setRcvAddr] = useState('')
-  const [postCode, setPostCode] = useState('');
+  // const [rcvAddr, setRcvAddr] = useState('')
 
-  const handleComplete = (data) => {
-    let fullAddress = data.address;
-    let extraAddress = ''; 
+  // const handleComplete = (data) => {
+  //   let fullAddress = data.address;
+  //   let extraAddress = ''; 
     
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-      }
-      fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
-    }
-    console.log(fullAddress);  // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-    setPostCode(data.zonecode);
-    setRcvAddr(fullAddress);
-  }
+  //   if (data.addressType === 'R') {
+  //     if (data.bname !== '') {
+  //       extraAddress += data.bname;
+  //     }
+  //     if (data.buildingName !== '') {
+  //       extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+  //     }
+  //     fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+  //   }
+  //   console.log(fullAddress);  // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+  //   setPostCode(data.zonecode);
+  //   setRcvAddr(fullAddress);
+  // }
     
   const placeOrder = e => {
     e.preventDefault()
@@ -64,7 +123,7 @@ const Checkout = ({ location, cartItems, currency }) => {
       buyer_email : `a@test.com`,
       buyer_name : `${rcvName}`,
       buyer_tel : `${rcvPhone}`,
-      buyer_addr : `${rcvAddr}`
+      // buyer_addr : `${rcvAddr}`
     }, function(rsp) {
         if ( rsp.success ) {
           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -100,7 +159,8 @@ const Checkout = ({ location, cartItems, currency }) => {
       });
 
     axios.post("http://localhost:8080/receiver/save",{
-      rcvName, rcvPhone, rcvAddr
+      rcvName, rcvPhone
+      // rcvAddr
     })
       .then(response => {
       alert('주문 성공')
@@ -144,24 +204,36 @@ const Checkout = ({ location, cartItems, currency }) => {
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
-                          <label>Address</label>        
-                          <React.Fragment>
-                            <button onClick={ openModal }>주소검색</button>   
+                          <label>Address</label> <button onClick={ execPostCode }>주소검색</button>          
+                          {/* <React.Fragment>
+                            
                             <Modal open={ modalOpen } close={ closeModal } header="주소 검색" type="submit">
                             <DaumPostcode onComplete={ handleComplete } />
                             </Modal>
-                          </React.Fragment>
+                          </React.Fragment> */}
                           <div className="mt-10">
-                          <input name="rcvAddr" required
+                          {/* <input value={`$rcvAddr`} required
                           onChange = { e => { setRcvAddr(`${e.target.value}`)}}
-                          />
+                          /> */}
                           </div>
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Postcode / ZIP</label>
-                          <input type="text" name="postCode" />
+                          <input type="text" value={`${postcode}`} />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                        <div className="billing-info mb-20">
+                          <label>addr</label>
+                          <input type="text" value={`${addr}`} />
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                        <div className="billing-info mb-20">
+                          <label>extraAddr</label>
+                          <input type="text" value={`${extraAddr}`} />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
