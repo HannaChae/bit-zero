@@ -26,18 +26,18 @@ const Checkout = ({ location, cartItems, currency}) => {
   const execPostCode = () => {
     new window.daum.Postcode({
       oncomplete: data => {
-        
-        if (data.userSelectedType === "R") {
-          // 사용자가 도로명 주소를 선택했을 경우
+
+        setPostcode(data.zonecode)
+
+        if(data.userSelectedType === "R"){
           setAddr(data.roadAddress)
-          setPostcode(data.zonecode)
-        } else {
-          // 사용자가 지번 주소를 선택했을 경우(J)
+          if (data.buildingName !== ""){
+            setExtraAddr(" (" + data.buildingName + ")")
+          }
+        }else{
           setExtraAddr(data.jibunAddress)
-          setPostcode(data.zonecode)
         }
-        
-      }
+    }
     }).open();
   };
 
