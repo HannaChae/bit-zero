@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useState, Fragment } from "react";
+import React, { Component, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import MetaTags from "react-meta-tags";
 import { connect } from "react-redux";
@@ -9,15 +9,14 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import axios from 'axios'
 import { TextField } from '@material-ui/core';
-import DaumPostcode from 'react-daum-postcode';
-import Modal from '../../components/modals/AddrModal';
+import DaumPostcode from './DaumPostcode';
+import Modal from  '../../components/modals/AddrModal';
 import $ from "jquery";
 import jQuery from "jquery";
 window.$ = window.jQuery = jQuery;
 
-
 const Checkout = ({ location, cartItems, currency }) => {
-  
+
   const [ modalOpen, setModalOpen ] = useState(false);
   const openModal = () => {
       setModalOpen(true);
@@ -26,15 +25,32 @@ const Checkout = ({ location, cartItems, currency }) => {
       setModalOpen(false);
   }
 
-
   const { pathname } = location;
   let cartTotalPrice = 0;
   const { IMP } = window;
+
   const [rcvName, setRcvName] = useState('')
   const [rcvPhone, setRcvPhone] = useState('')
   const [rcvAddr, setRcvAddr] = useState('')
+  const [postCode, setPostCode] = useState('');
 
-
+  const handleComplete = (data) => {
+    let fullAddress = data.address;
+    let extraAddress = ''; 
+    
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
+      }
+      fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+    }
+    console.log(fullAddress);  // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
+    setPostCode(data.zonecode);
+    setRcvAddr(fullAddress);
+  }
     
   const placeOrder = e => {
     e.preventDefault()
@@ -121,28 +137,37 @@ const Checkout = ({ location, cartItems, currency }) => {
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Name</label>
-                          <TextField name="rcvName" required
+                          <input name="rcvName" required
                           onChange = { e => { setRcvName(`${e.target.value}`)}}
                           />
                         </div>
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
-                          <label>Address</label>
+                          <label>Address</label>        
                           <React.Fragment>
-                            <button onClick={ openModal }>주소검색</button>
+                            <button onClick={ openModal }>주소검색</button>   
                             <Modal open={ modalOpen } close={ closeModal } header="주소 검색" type="submit">
+                            <DaumPostcode onComplete={ handleComplete } />
                             </Modal>
                           </React.Fragment>
-                          <TextField name="rcvAddr" required
+                          <div className="mt-10">
+                          <input name="rcvAddr" required
                           onChange = { e => { setRcvAddr(`${e.target.value}`)}}
                           />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-lg-6 col-md-6">
+                        <div className="billing-info mb-20">
+                          <label>Postcode / ZIP</label>
+                          <input type="text" name="postCode" />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <TextField name="rcvPhone" required
+                          <input name="rcvPhone" required
                           onChange = { e => { setRcvPhone(`${e.target.value}`)}}
                           />
                         </div>
