@@ -17,11 +17,10 @@ import { CompareRounded } from "@material-ui/icons";
 window.$ = window.jQuery = jQuery;
 
 const Checkout = ({ location, cartItems, currency}) => {
+
   const [ addr, setAddr ] = useState("");
   const [ extraAddr, setExtraAddr ] = useState("");
   const [ postcode, setPostcode ] = useState("");
-  const [ targetValue, setTargetValue ] = useState("");
-  const [ text, setText ] = useState("");
 
   const execPostCode = () => {
     new window.daum.Postcode({
@@ -41,41 +40,15 @@ const Checkout = ({ location, cartItems, currency}) => {
     }).open();
   };
 
-
-  // const [ modalOpen, setModalOpen ] = useState(false);
-  // const openModal = () => {
-  //     setModalOpen(true);
-  // }
-  // const closeModal = () => {
-  //     setModalOpen(false);
-  // }
-
   const { pathname } = location;
   let cartTotalPrice = 0;
   const { IMP } = window;
 
   const [rcvName, setRcvName] = useState('')
   const [rcvPhone, setRcvPhone] = useState('')
-  // const [rcvAddr, setRcvAddr] = useState('')
+  const [rcvAddr, setRcvAddr] = useState('')
+  const [payPrice, setPayPrice ] = useState('')
 
-  // const handleComplete = (data) => {
-  //   let fullAddress = data.address;
-  //   let extraAddress = ''; 
-    
-  //   if (data.addressType === 'R') {
-  //     if (data.bname !== '') {
-  //       extraAddress += data.bname;
-  //     }
-  //     if (data.buildingName !== '') {
-  //       extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
-  //     }
-  //     fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
-  //   }
-  //   console.log(fullAddress);  // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
-  //   setPostCode(data.zonecode);
-  //   setRcvAddr(fullAddress);
-  // }
-    
   const placeOrder = e => {
     e.preventDefault()
     IMP.init('imp55713696');
@@ -84,11 +57,11 @@ const Checkout = ({ location, cartItems, currency}) => {
       pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
       merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
       name : `테스트`,
-      amount : 1,
+      amount : `${cartTotalPrice.toFixed(0)}`,
       buyer_email : `a@test.com`,
       buyer_name : `${rcvName}`,
       buyer_tel : `${rcvPhone}`,
-      // buyer_addr : `${rcvAddr}`
+      buyer_addr : `${rcvAddr}`
     }, function(rsp) {
         if ( rsp.success ) {
           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -124,8 +97,8 @@ const Checkout = ({ location, cartItems, currency}) => {
       });
 
     axios.post("http://localhost:8080/receiver/save",{
-      rcvName, rcvPhone
-      // rcvAddr
+      rcvName, rcvPhone, 
+      rcvAddr: `${postcode} ${addr} ${extraAddr} ${currency.currencySymbol} ${cartTotalPrice.toFixed(2)}`
     })
       .then(response => {
       alert('주문 성공')
@@ -169,17 +142,8 @@ const Checkout = ({ location, cartItems, currency}) => {
                       </div>
                       <div className="col-lg-12">
                         <div className="billing-info mb-20">
-                          <label>Address</label> <button onClick={ execPostCode }>주소검색</button>          
-                          {/* <React.Fragment>
-                            
-                            <Modal open={ modalOpen } close={ closeModal } header="주소 검색" type="submit">
-                            <DaumPostcode onComplete={ handleComplete } />
-                            </Modal>
-                          </React.Fragment> */}
+                          <label>Address</label> <button onClick={ execPostCode }>주소 검색</button>          
                           <div className="mt-10">
-                          {/* <input value={`$rcvAddr`} required
-                          onChange = { e => { setRcvAddr(`${e.target.value}`)}}
-                          /> */}
                           </div>
                         </div>
                       </div>
@@ -263,8 +227,8 @@ const Checkout = ({ location, cartItems, currency}) => {
                           <ul>
                             <li className="order-total">Total</li>
                             <li>
-                              {currency.currencySymbol +
-                                cartTotalPrice.toFixed(2)}
+                              <input type="text" value={`${currency.currencySymbol}` +
+                                `${cartTotalPrice.toFixed(2)}`} />
                             </li>
                           </ul>
                         </div>
