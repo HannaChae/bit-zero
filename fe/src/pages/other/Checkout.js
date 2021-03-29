@@ -14,13 +14,30 @@ import Modal from  '../../components/modals/AddrModal';
 import $ from "jquery";
 import jQuery from "jquery";
 import { CompareRounded } from "@material-ui/icons";
+import moment from "moment";
 window.$ = window.jQuery = jQuery;
+
 
 const Checkout = ({ location, cartItems, currency}) => {
 
-  const [ addr, setAddr ] = useState("");
-  const [ extraAddr, setExtraAddr ] = useState("");
-  const [ postcode, setPostcode ] = useState("");
+  const [usrEmail, setUsrEmail] = useState('')
+  const [user, setUser] = useState([])
+  const URL = '/user/all'
+ useEffect(()=>{
+   axios.get(URL, )
+   .then((response) => {
+     setUser(response.data)
+   })
+   .catch((error) => {
+     alert('실패')
+     throw error;
+   })
+  },[])
+
+  const [ addr, setAddr ] = useState('')
+  const [ extraAddr, setExtraAddr ] = useState('')
+  const [ postcode, setPostcode ] = useState('')
+  const [ fullAddr, setFullAddr ] = useState('')
 
   const execPostCode = () => {
     new window.daum.Postcode({
@@ -44,10 +61,17 @@ const Checkout = ({ location, cartItems, currency}) => {
   let cartTotalPrice = 0;
   const { IMP } = window;
 
-  const [rcvName, setRcvName] = useState('')
-  const [rcvPhone, setRcvPhone] = useState('')
-  const [rcvAddr, setRcvAddr] = useState('')
-  const [payPrice, setPayPrice ] = useState('')
+  const [ rcvName, setRcvName ] = useState('')
+  const [ rcvPhone, setRcvPhone ] = useState('')
+  const [ rcvAddr, setRcvAddr ] = useState('')
+
+  const [ payPrice, setPayPrice ] = useState('')
+  const [ payAmount, setPayAmount] = useState('')
+  const [ dvrFee, setDvrFee] = useState('')
+  const [ payDate, setPayDate] = useState('')
+  const [ payState, setPayState] = useState('')
+
+  const [nowTime, setNowTime] = useState(moment().format('YYYY-MM-DD HH:mm:ss'));
 
   const placeOrder = e => {
     e.preventDefault()
@@ -56,9 +80,9 @@ const Checkout = ({ location, cartItems, currency}) => {
       pg : 'kakaopay',
       pay_method : 'card', //card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
       merchant_uid : 'merchant_' + new Date().getTime(), //상점에서 관리하시는 고유 주문번호를 전달
-      name : `테스트`,
+      name : `${cartItems}`,
       amount : `${cartTotalPrice.toFixed(0)}`,
-      buyer_email : `a@test.com`,
+      buyer_email : `${usrEmail}`,
       buyer_name : `${rcvName}`,
       buyer_tel : `${rcvPhone}`,
       buyer_addr : `${rcvAddr}`
@@ -66,9 +90,10 @@ const Checkout = ({ location, cartItems, currency}) => {
         if ( rsp.success ) {
           //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
           jQuery.ajax({
-          url: "/", //cross-domain error가 발생하지 않도록 주의해주세요
+          url: "http://localhost:8080/receiver/save", //cross-domain error가 발생하지 않도록 주의해주세요
           type: 'POST',
           dataType: 'json',
+          headers: { "Content-Type": "application/json" },
           data: {
           imp_uid : rsp.imp_uid
           //기타 필요한 데이터가 있으면 추가 전달
@@ -96,9 +121,14 @@ const Checkout = ({ location, cartItems, currency}) => {
         }
       });
 
-    axios.post("http://localhost:8080/receiver/save",{
-      rcvName, rcvPhone, 
-      rcvAddr: `${postcode} ${addr} ${extraAddr} ${currency.currencySymbol} ${cartTotalPrice.toFixed(2)}`
+    axios.post("http://localhost:8080/payment/save", {
+      payPrice: `${cartTotalPrice.toFixed(0)}`,
+      payAmount, 
+      // rcvName, rcvPhone, 
+      // rcvAddr: `${postcode} ${addr} ${extraAddr}` + fullAddr,
+      dvrFee: '0',
+      payDate: nowTime,
+      payState: '결제완료'
     })
       .then(response => {
       alert('주문 성공')
@@ -106,8 +136,17 @@ const Checkout = ({ location, cartItems, currency}) => {
       .catch(error =>{
       alert('주문 실패')
       })
-    }
 
+    // axios.post("http://localhost:8080/receiver/save",{
+
+    // })
+    //   .then(response => {
+    //   alert('주문 성공')
+    //   })
+    //   .catch(error =>{
+    //   alert('주문 실패')
+    //   })
+    // }
   return (
     <Fragment>
       <MetaTags>
@@ -130,41 +169,63 @@ const Checkout = ({ location, cartItems, currency}) => {
               <div className="row">
                 <div className="col-lg-7">
                   <div className="billing-info-wrap">
+                    <h3>User Info</h3>
+                    <div className="row">
+                      <ul>
+                        {user.map(i => (
+                          <li key = {i.usrNo}>
+                            <div className="col-lg-6 col-md-6">
+                              <div className="billing-info mb-20">
+                                <label>Name</label>
+                                <input type="text" value={i.usrName} readOnly/>
+                              </div>
+                            </div>
+                            <div className="col-lg-6 col-md-6">
+                              <div className="billing-info mb-20">
+                                <label>Phone</label>
+                                <input type="text" value={i.usrPhone} readOnly/>
+                              </div>
+                            </div>
+                            <div className="col-lg-12">
+                              <div className="billing-info mb-20">
+                                <label>Address</label>
+                                <input type="text" value={i.usrAddr} readOnly/>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                     <h3>Billing Details</h3>
                     <div className="row">
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Name</label>
-                          <input name="rcvName" required
+                          <input name="rcvName" placeholder="받으시는 분의 성함을 입력하세요" required
                           onChange = { e => { setRcvName(`${e.target.value}`)}}
                           />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="billing-info mb-20">
-                          <label>Address</label> <button onClick={ execPostCode }>주소 검색</button>          
-                          <div className="mt-10">
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6">
-                        <div className="billing-info mb-20">
-                          <label>address</label>
-                          <input type="text" value={`${postcode} ${addr} ${extraAddr}`} readOnly />
                         </div>
                       </div>
                       <div className="col-lg-6 col-md-6">
                         <div className="billing-info mb-20">
                           <label>Phone</label>
-                          <input name="rcvPhone" required
+                          <input type="number" name="rcvPhone" placeholder="받으시는 분의 연락처를 입력하세요" required
                           onChange = { e => { setRcvPhone(`${e.target.value}`)}}
                           />
                         </div>
                       </div>
+                      <div className="col-lg-12">
+                        <div className="billing-info mb-20">
+                          <label>Address</label> <button onClick={ execPostCode }>주소 검색</button>
+                          <input type="text" value={`${postcode} ${addr} ${extraAddr}`} readOnly />
+                          <input type="text" placeholder="받으시는 분의 상세 주소를 입력하세요" name="fullAddr" required
+                          onChange = { e => { setFullAddr(`${e.target.value}`)}} />
+                        </div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
-
                 <div className="col-lg-5">
                   <div className="your-order-area">
                     <h3>Your order</h3>
@@ -198,7 +259,7 @@ const Checkout = ({ location, cartItems, currency}) => {
                               return (
                                 <li key={key}>
                                   <span className="order-middle-left">
-                                    {cartItem.name} X {cartItem.quantity}
+                                  {cartItem.name} X {cartItem.quantity}
                                   </span>{" "}
                                   <span className="order-price">
                                     {discountedPrice !== null
@@ -228,7 +289,7 @@ const Checkout = ({ location, cartItems, currency}) => {
                             <li className="order-total">Total</li>
                             <li>
                               <input type="text" value={`${currency.currencySymbol}` +
-                                `${cartTotalPrice.toFixed(2)}`} />
+                                `${cartTotalPrice.toFixed(0)}`} readOnly />
                             </li>
                           </ul>
                         </div>

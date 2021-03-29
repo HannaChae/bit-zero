@@ -1,13 +1,26 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
-import Card from "react-bootstrap/Card";
+import Card, { CardBody } from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import axios from 'axios';
+import { cardActionAreaClasses } from "@material-ui/core";
 
 const MyAccount = ({ location }) => {
+  const [payment, setPayment] = useState([])
+ useEffect(()=>{
+   axios.get("http://localhost:8080/payment/all")
+   .then(({ data }) => setPayment(data))
+   .catch((error) => {
+     alert('실패')
+     throw error;
+   })
+  },[])
+
+
   const { pathname } = location;
 
   return (
@@ -159,6 +172,56 @@ const MyAccount = ({ location }) => {
                                 </div>
                               </div>
                             </div>
+                            <div className="billing-back-btn">
+                              <div className="billing-btn">
+                                <button type="submit">Continue</button>
+                              </div>
+                            </div>
+                          </div>
+                        </Card.Body>
+                      </Accordion.Collapse>
+                    </Card>
+                    <Card className="single-my-account mb-20">
+                      <Card.Header className="panel-heading">
+                        <Accordion.Toggle variant="link" eventKey="2">
+                          <h3 className="panel-title">
+                            <span>4 .</span> Order list{" "}
+                          </h3>
+                        </Accordion.Toggle>
+                      </Card.Header>
+                      <Accordion.Collapse eventKey="2">
+                        <Card.Body>
+                          <div className="myaccount-info-wrapper">
+                            <div className="account-info-wrapper">
+                              <h4>Address Book Entries</h4>
+                            </div>
+                            {payment.map((card, index) => (
+                            <div className="entries-wrapper">
+                              <div className="row">
+                                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
+                                  <div className="entries-info text-center">
+                                      <div key={index}>
+                                        <div>
+                                        {card.payDate}
+                                        </div>
+                                        <div>
+                                        {card.payPrice}
+                                        </div>
+                                        <div>
+                                        {card.payState}
+                                        </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
+                                  <div className="entries-edit-delete text-center">
+                                    <button className="edit">교환/환불</button>
+                                    <button>Delete</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            ))}
                             <div className="billing-back-btn">
                               <div className="billing-btn">
                                 <button type="submit">Continue</button>

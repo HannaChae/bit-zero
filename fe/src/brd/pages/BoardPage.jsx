@@ -20,7 +20,6 @@ export const BoardPage = () =>{
        alert('실패')
        throw error;
      })
-     
    },[])
     return (<> 
         <ul>
