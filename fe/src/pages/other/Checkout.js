@@ -137,16 +137,16 @@ const Checkout = ({ location, cartItems, currency}) => {
       alert('주문 실패')
       })
 
-    // axios.post("http://localhost:8080/receiver/save",{
+    axios.post("http://localhost:8080/receiver/save",{
 
-    // })
-    //   .then(response => {
-    //   alert('주문 성공')
-    //   })
-    //   .catch(error =>{
-    //   alert('주문 실패')
-    //   })
-    // }
+    })
+      .then(response => {
+      alert('주문 성공')
+      })
+      .catch(error =>{
+      alert('주문 실패')
+      })
+    }
   return (
     <Fragment>
       <MetaTags>

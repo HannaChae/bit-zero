@@ -183,17 +183,17 @@ const MyAccount = ({ location }) => {
                     </Card>
                     <Card className="single-my-account mb-20">
                       <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="2">
+                        <Accordion.Toggle variant="link" eventKey="3">
                           <h3 className="panel-title">
                             <span>4 .</span> Order list{" "}
                           </h3>
                         </Accordion.Toggle>
                       </Card.Header>
-                      <Accordion.Collapse eventKey="2">
+                      <Accordion.Collapse eventKey="3">
                         <Card.Body>
                           <div className="myaccount-info-wrapper">
                             <div className="account-info-wrapper">
-                              <h4>Address Book Entries</h4>
+                              <h4>Order list</h4>
                             </div>
                             {payment.map((card, index) => (
                             <div className="entries-wrapper">
